@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace TrainerCalenderAPI.Migrations
 {
-    public partial class AddedAllTheTablesToDb : Migration
+    public partial class AddedAllTables : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

@@ -12,8 +12,8 @@ using TrainerCalenderAPI.DbContexts;
 namespace TrainerCalenderAPI.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220923035021_AddedAllTheTablesToDb")]
-    partial class AddedAllTheTablesToDb
+    [Migration("20220926084901_AddedAllTables")]
+    partial class AddedAllTables
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
