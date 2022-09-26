@@ -1,0 +1,53 @@
+header {
+    overflow: hidden;
+    background-color: darkgrey;
+    padding: 2px 2px;
+}
+
+header a {
+    float: left;
+    padding: 14px;
+    
+}
+
+.header-right {
+    float: right;
+}
+
+.footer {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: darkgrey;
+}
+
+.form {
+    width: 450px;
+    height: 450px;
+    border: 2px solid black;
+    margin: 0px auto 0px;
+    padding: 0px 0px 0;
+}
+
+label {
+    margin: 0px 5px 0px;
+    float: left;  
+}
+
+input {
+    width: 250px;
+    padding: 3px;
+}
+
+.btn {
+    margin: 2px;
+    display: flex;
+    justify-content: center;
+}
+
+.btn.btn1{
+    margin-right: 200px;
+    
+}
+
