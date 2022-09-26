@@ -1,34 +1,35 @@
-import React from "react";
-import { Routes, Route, Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Routes, Route } from "react-router-dom";
 
-import Login from "./Login";
-import Dashboard from "./Dashboard";
-import Home from "./Home";
+import Login from "./components/Login";
+import Dashboard from "./components/Dashboard";
+import Home from "./components/Home";
+import About from "./components/About";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import AddTrainerComp from "./components/AddTrainerComp"
 
 function App() {
+  const [isLoggedIn,setIsLoggedIn] = useState(false)
+
+  const handleCallBack = (value)=>{
+     setIsLoggedIn(value)
+  }
+
   return (
     <div className="App">
       <div>
-        <div className="header">
-          <Link exact activeClassName="active" to="/">
-            Home
-          </Link>
-          <Link activeClassName="active" to="/login">
-            Login
-          </Link>
-          <small>(Access without token only)</small>
-          <Link activeClassName="active" to="/dashboard">
-            Dashboard
-          </Link>
-          <small>(Access with token only)</small>
-        </div>
+        <Header isLoggedIn={isLoggedIn}/>
         <div className="content">
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/Login" element={<Login />} />
+            <Route path="/Login" element={<Login callBack={handleCallBack}/>} />
             <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/addTrainer" element={<AddTrainerComp/>}/>
           </Routes>
         </div>
+        <Footer/>
       </div>
     </div>
   );
