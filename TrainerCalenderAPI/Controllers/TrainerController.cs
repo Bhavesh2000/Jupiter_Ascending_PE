@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using TrainerCalenderAPI.Models;
+using TrainerCalenderAPI.Models.Dto;
 using TrainerCalenderAPI.Repository.IRepository;
 
 namespace TrainerCalenderAPI.Controllers
@@ -9,42 +10,52 @@ namespace TrainerCalenderAPI.Controllers
     public class TrainerController : Controller
     {
         private readonly ITrainerRepository _trainerRepository;
+        ResponseDto _response;
         public TrainerController(ITrainerRepository trainerRepository)
         {
+            this._response = new ResponseDto();
             _trainerRepository = trainerRepository;
         }
 
         [HttpGet]
         [Route("/GetAllTrainers")]
-        public async Task<ActionResult> GetTrainers()
+        public async Task<object> GetTrainers()
         {
             try
             {
-                return Ok(await _trainerRepository.GetAllTrainers());
+                var result = await _trainerRepository.GetAllTrainers();
+                _response.Result = Ok(result);
+                
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, "Error in retrieving Data from Database");
+                //return StatusCode(StatusCodes.Status500InternalServerError, "Error in retrieving Data from Database");
+                _response.IsSuccess = false;
+                _response.ErrorMessages = new List<string>() { ex.ToString() };
             }
+            return _response;
         }
 
         [HttpGet("/GetTrainerById/{id}")]
 
-        public async Task<ActionResult<Trainer>> GetTrainerById(string id)
+        public async Task<ActionResult<object>> GetTrainerById(string id)
         {
             try
             {
                 var result = await _trainerRepository.GetTrainersById(id);
                 if (result == null)
                 {
-                    return NotFound();
+                    _response.Result = NotFound();
                 }
-                return result;
+                _response.Result =Ok(result);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, "Error in retrieving Data from Database");
+               // return StatusCode(StatusCodes.Status500InternalServerError, "Error in retrieving Data from Database");
+                _response.IsSuccess = false;
+                _response.ErrorMessages = new List<string>() { ex.ToString() };
             }
+            return _response;
         }
 
 
@@ -56,78 +67,91 @@ namespace TrainerCalenderAPI.Controllers
                 var result = await _trainerRepository.GetTrainersBySkill(id);
                 if (result == null)
                 {
-                    return NotFound();
+                    _response.Result =  NotFound();
                 }
-                return result;
+                _response.Result = Ok(result);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, "Error in retrieving Data from Database");
+               // return StatusCode(StatusCodes.Status500InternalServerError, "Error in retrieving Data from Database");
+                _response.IsSuccess = false;
+                _response.ErrorMessages = new List<string>() { ex.ToString() };
             }
+            return _response;
         }
 
 
         [HttpDelete("/DeleteTrainer/{id}")]
-        public async Task<ActionResult<Trainer>> DeleteTrainerById(string id)
+        public async Task<ActionResult<object>> DeleteTrainerById(string id)
         {
             try
             {
                 var trainerDelete = await _trainerRepository.GetTrainersById(id);
                 if (trainerDelete == null)
                 {
-                    return NotFound($"Employee Id={id}not Found");
+                    _response.DisplayMessage = $"Employee Id={id}not Found";
                 }
-                return await _trainerRepository.DeleteTrainer(id);
-
+                var result =  _trainerRepository.DeleteTrainer(id);
+                _response.Result = Ok(result);
             }
 
-            catch (Exception)
+            catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, "Error in retrieving Data from Database");
-
+                // return StatusCode(StatusCodes.Status500InternalServerError, "Error in retrieving Data from Database");
+                _response.IsSuccess = false;
+                _response.ErrorMessages = new List<string>() { ex.ToString() };
             }
+            return _response;
         }
 
-        [HttpPost("/AddTrainer")]
-        public async Task<ActionResult<Trainer>> AddNewTrainer([FromBody] Trainer trainer)
-        {
-            try
-            {
-                if (trainer == null)
-                    return BadRequest("Null Data");
+        //[HttpPost("/AddTrainer")]
+        //public async Task<ActionResult<object>> AddNewTrainer([FromBody] TrainerViewModel trainer)
+        //{
+        //    try
+        //    {
+        //        if (trainer == null)
+        //            _response.Result = BadRequest("Null Data");
 
 
-                var createdTrainer = await _trainerRepository.AddTrainer(trainer);
+        //        var createdTrainer = await _trainerRepository.AddTrainer(trainer);
 
-                return CreatedAtAction(nameof(GetTrainerById),
-                    new { id = createdTrainer.Id }, createdTrainer);
-            }
-            catch (Exception)
-            {
-                return StatusCode(StatusCodes.Status500InternalServerError,
-                    "Error creating new employee record");
-            }
-        }
+        //        var result = CreatedAtAction(nameof(GetTrainerById),
+        //            new { id = createdTrainer.Id }, createdTrainer);
+        //        _response.Result = Ok(result);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //       // return StatusCode(StatusCodes.Status500InternalServerError,
+        //          //  "Error creating new employee record");
+        //        _response.IsSuccess = false;
+        //        _response.ErrorMessages = new List<string>() { ex.ToString() };
+        //    }
+        //    return _response;
+        //}
 
 
         [HttpPut("/UpdateTrainer/{id}")]
-        public async Task<ActionResult<Trainer>> UpdateTrainer(string id, Trainer trainer)
+        public async Task<ActionResult<object>> UpdateTrainer(string id, TrainerViewModel trainer)
         {
             try
             {
-
+                
                 var trainerToUpdate = await _trainerRepository.GetTrainersById(id);
 
                 if (trainerToUpdate == null)
-                    return NotFound($"Employee Id={id} not Found");
+                    _response.DisplayMessage =  ($"Employee Id={id} not Found");
 
-                return await _trainerRepository.UpdateTrainer(trainer);
+                var result = await _trainerRepository.UpdateTrainer(trainer, id);
+                _response.Result = Ok(result);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError,
-                    "Error updating data");
+                //return StatusCode(StatusCodes.Status500InternalServerError,
+                //    "Error updating data");
+                _response.IsSuccess = false;
+                _response.ErrorMessages = new List<string>() { ex.ToString() };
             }
+            return _response;
         }
 
 

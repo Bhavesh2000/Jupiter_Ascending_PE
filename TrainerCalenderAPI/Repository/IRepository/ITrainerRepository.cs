@@ -1,15 +1,16 @@
 ﻿using TrainerCalenderAPI.Models;
+using TrainerCalenderAPI.Models.Dto;
 
 namespace TrainerCalenderAPI.Repository.IRepository
 {
     public interface ITrainerRepository
     {
         Task<IEnumerable<object>> GetAllTrainers();
-        Task<Trainer> GetTrainersById(string id);
+        Task<object> GetTrainersById(string id);
         Task<object> GetTrainersBySkill(int id);
        
-        Task<Trainer> AddTrainer(Trainer trainer);
-        Task<Trainer> UpdateTrainer(Trainer trainer);
-        Task<Trainer> DeleteTrainer(string id);
+       // Task<object> AddTrainer(TrainerViewModel trainer);
+        Task<object> UpdateTrainer(TrainerViewModel trainer, string id);
+        Task<object> DeleteTrainer(string id);
     }
 }
