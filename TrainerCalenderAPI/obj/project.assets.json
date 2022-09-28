@@ -3084,19 +3084,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\naman_kumar\\.nuget\\packages\\": {}
+    "C:\\Users\\piyush_wani\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\JUPITER\\TrainerCalenderJupiter\\TrainerCalenderAPI\\TrainerCalenderAPI.csproj",
+      "projectUniqueName": "C:\\Users\\piyush_wani\\Documents\\Jypiter Project\\project\\TrainerCalenderAPI\\TrainerCalenderAPI.csproj",
       "projectName": "TrainerCalenderAPI",
-      "projectPath": "D:\\JUPITER\\TrainerCalenderJupiter\\TrainerCalenderAPI\\TrainerCalenderAPI.csproj",
-      "packagesPath": "C:\\Users\\naman_kumar\\.nuget\\packages\\",
-      "outputPath": "D:\\JUPITER\\TrainerCalenderJupiter\\TrainerCalenderAPI\\obj\\",
+      "projectPath": "C:\\Users\\piyush_wani\\Documents\\Jypiter Project\\project\\TrainerCalenderAPI\\TrainerCalenderAPI.csproj",
+      "packagesPath": "C:\\Users\\piyush_wani\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\piyush_wani\\Documents\\Jypiter Project\\project\\TrainerCalenderAPI\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\naman_kumar\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\piyush_wani\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
