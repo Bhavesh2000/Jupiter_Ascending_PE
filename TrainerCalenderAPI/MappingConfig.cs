@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using TrainerCalenderAPI.Models;
+using TrainerCalenderAPI.Models.Dto;
 
 namespace TrainerCalenderAPI
 {
@@ -8,9 +10,11 @@ namespace TrainerCalenderAPI
         {
             var mappingConfig = new MapperConfiguration(config =>
             {
-                
+                var mappingConfig = new MapperConfiguration(config => {
+                    config.CreateMap<SessionDto, Session>();
+                    config.CreateMap<Session, SessionDto>();
+                });
             });
-
             return mappingConfig;
         }
     }

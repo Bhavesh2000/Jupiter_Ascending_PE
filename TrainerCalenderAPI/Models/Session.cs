@@ -6,7 +6,6 @@ namespace TrainerCalenderAPI.Models
     {
         [Key]
         public int Id { get; set; }
-        public string Title { get; set; }
 
         public DateTime StartDate { get; set; }
 
@@ -20,16 +19,16 @@ namespace TrainerCalenderAPI.Models
 
         public string TrainingLocation { get; set; }
 
-        public int CourseId { get; set; }
-        [ForeignKey("CourseId")]
-        public virtual Course Course { get; set; }
+        public string TrainerId { get; set; }
+        [ForeignKey("TrainerId")]
+        public Trainer trainer { get; set; }
 
         public int SkillId { get; set; }
         [ForeignKey("SkillId")]
-        public virtual Skill Skill { get; set; }
+        public Skill skill { get; set; }
 
-        public string TrainerId { get; set; }
-        [ForeignKey("TrainerId")]
-        public virtual Trainer Trainer { get; set; }
+        public int CourseId { get; set; }
+        [ForeignKey("CourseId")]
+        public Course course { get; set; }
     }
 }

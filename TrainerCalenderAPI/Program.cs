@@ -47,8 +47,8 @@ builder.Services.AddAuthentication(x =>
 	};
 });
 
-
 builder.Services.AddScoped<IJWTManagerRepository, JWTManagerRepository>();
+builder.Services.AddScoped<ISessionRepository, SessionRepository>();
 builder.Services.AddControllers();
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
