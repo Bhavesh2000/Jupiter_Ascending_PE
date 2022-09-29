@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\piyush_wani\\Documents\\Jypiter Project\\project\\TrainerCalenderAPI\\TrainerCalenderAPI.csproj": {}
+    "D:\\Jupiter_Ascending_PE\\TrainerCalenderAPI\\TrainerCalenderAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\piyush_wani\\Documents\\Jypiter Project\\project\\TrainerCalenderAPI\\TrainerCalenderAPI.csproj": {
+    "D:\\Jupiter_Ascending_PE\\TrainerCalenderAPI\\TrainerCalenderAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\piyush_wani\\Documents\\Jypiter Project\\project\\TrainerCalenderAPI\\TrainerCalenderAPI.csproj",
+        "projectUniqueName": "D:\\Jupiter_Ascending_PE\\TrainerCalenderAPI\\TrainerCalenderAPI.csproj",
         "projectName": "TrainerCalenderAPI",
-        "projectPath": "C:\\Users\\piyush_wani\\Documents\\Jypiter Project\\project\\TrainerCalenderAPI\\TrainerCalenderAPI.csproj",
-        "packagesPath": "C:\\Users\\piyush_wani\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\piyush_wani\\Documents\\Jypiter Project\\project\\TrainerCalenderAPI\\obj\\",
+        "projectPath": "D:\\Jupiter_Ascending_PE\\TrainerCalenderAPI\\TrainerCalenderAPI.csproj",
+        "packagesPath": "C:\\Users\\bhavesh_pawar1\\.nuget\\packages\\",
+        "outputPath": "D:\\Jupiter_Ascending_PE\\TrainerCalenderAPI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\piyush_wani\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\bhavesh_pawar1\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -105,7 +105,8 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -117,7 +118,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
         }
       }
     }
