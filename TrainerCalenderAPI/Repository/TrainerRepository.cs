@@ -45,13 +45,13 @@ namespace TrainerCalenderAPI.Repository
             //return trainerDetails;
             List<Trainer> trainerList = await _applicationDbcontext.Trainers.Include(s => s.Skills).ToListAsync();
 
-            List<TrainerViewModel> trainers = new List<TrainerViewModel>();
+            List<TrainerModelDto> trainers = new List<TrainerModelDto>();
             foreach (var trainer in trainerList)
             {
-                List<SkillViewModel> skills = new List<SkillViewModel>();
+                List<SkillModelDto> skills = new List<SkillModelDto>();
                 foreach (var skill in trainer.Skills)
                 {
-                    var skillVM = new SkillViewModel
+                    var skillVM = new SkillModelDto
                     {
                         Id = skill.Id,
                         Name = skill.Name
@@ -59,7 +59,7 @@ namespace TrainerCalenderAPI.Repository
                     skills.Add(skillVM);
                 }
 
-                var tr = new TrainerViewModel()
+                var tr = new TrainerModelDto()
                 {
                     EmpId = trainer.Id,
                     Name = _applicationDbcontext.Users.First(x => x.Id.Equals(trainer.Id)).Email,
@@ -78,17 +78,17 @@ namespace TrainerCalenderAPI.Repository
             //                        .Include(p => p.Skills)
             //                        .FirstOrDefaultAsync(a => a.Id == id);
             var trainer = await _applicationDbcontext.Trainers.Include(x => x.Skills).FirstOrDefaultAsync();
-            List<SkillViewModel> skills = new List<SkillViewModel>();
+            List<SkillModelDto> skills = new List<SkillModelDto>();
             foreach (var skill in trainer.Skills)
             {
-                var skillVM = new SkillViewModel
+                var skillVM = new SkillModelDto
                 {
                     Id = skill.Id,
                     Name = skill.Name
                 };
                 skills.Add(skillVM);
             }
-            var tr = new TrainerViewModel()
+            var tr = new TrainerModelDto()
             {
                 EmpId = trainer.Id,
                 Name = _applicationDbcontext.Users.First(x => x.Id.Equals(trainer.Id)).Email,
@@ -97,7 +97,7 @@ namespace TrainerCalenderAPI.Repository
             return tr;
         }
 
-        //public async Task<object> AddTrainer(TrainerViewModel trainer)
+        //public async Task<object> AddTrainer(TrainerViewModelDto trainer)
         //{
 
         //    await _applicationDbcontext.Trainers.AddAsync(trainer);
@@ -108,7 +108,7 @@ namespace TrainerCalenderAPI.Repository
         //    return trainer;
         //}
 
-        public async Task<object> UpdateTrainer(TrainerViewModel trainer, string id)
+        public async Task<object> UpdateTrainer(TrainerModelDto trainer, string id)
         {
 
             var result = await _applicationDbcontext.Trainers
@@ -141,10 +141,10 @@ namespace TrainerCalenderAPI.Repository
                                               .Include(x => x.Trainers)
                                                  .ThenInclude(x => x.User)
                                               .FirstOrDefaultAsync(a => a.Id == id);
-            List<TrainerViewModel> trainers = new List<TrainerViewModel>();
+            List<TrainerModelDto> trainers = new List<TrainerModelDto>();
             foreach (var trainer in skill.Trainers)
             {
-                var tr = new TrainerViewModel()
+                var tr = new TrainerModelDto()
                 {
                     EmpId = trainer.Id,
                     Name = _applicationDbcontext.Users.First(x => x.Id.Equals(trainer.Id)).Name,

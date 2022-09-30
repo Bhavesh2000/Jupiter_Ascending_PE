@@ -131,7 +131,7 @@ namespace TrainerCalenderAPI.Controllers
 
 
         [HttpPut("/UpdateTrainer/{id}")]
-        public async Task<ActionResult<object>> UpdateTrainer(string id, TrainerViewModel trainer)
+        public async Task<ActionResult<object>> UpdateTrainer(string id, TrainerModelDto trainer)
         {
             try
             {

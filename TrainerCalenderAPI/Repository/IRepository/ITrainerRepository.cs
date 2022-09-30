@@ -10,7 +10,7 @@ namespace TrainerCalenderAPI.Repository.IRepository
         Task<object> GetTrainersBySkill(int id);
        
        // Task<object> AddTrainer(TrainerViewModel trainer);
-        Task<object> UpdateTrainer(TrainerViewModel trainer, string id);
+        Task<object> UpdateTrainer(TrainerModelDto trainer, string id);
         Task<object> DeleteTrainer(string id);
     }
 }
