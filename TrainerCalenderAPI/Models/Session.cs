@@ -24,11 +24,11 @@ namespace TrainerCalenderAPI.Models
         public Trainer trainer { get; set; }
 
         public int SkillId { get; set; }
-        [ForeignKey("SkillId")]
-        public Skill skill { get; set; }
+        [ForeignKey("Id")]
+        public virtual ICollection<Skill> Skills { get; set; }
 
         public int CourseId { get; set; }
-        [ForeignKey("CourseId")]
-        public Course course { get; set; }
+        [ForeignKey("Id")]
+        public virtual ICollection<Course> Courses { get; set; }
     }
 }

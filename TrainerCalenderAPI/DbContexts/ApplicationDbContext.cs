@@ -11,10 +11,8 @@ namespace TrainerCalenderAPI.DbContexts
 
 
         }
-        public DbSet<Employee> employees { get; set; }
         public DbSet<Skill> Skills { get; set; }
         public DbSet<Trainer> Trainers { get; set; }
-
         public DbSet<Course> Courses { get; set; }
 
         public DbSet<Session> Sessions { get; set; }

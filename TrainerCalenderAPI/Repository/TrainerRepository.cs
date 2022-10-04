@@ -62,7 +62,7 @@ namespace TrainerCalenderAPI.Repository
                 var tr = new TrainerModelDto()
                 {
                     EmpId = trainer.Id,
-                    Name = _applicationDbcontext.Users.First(x => x.Id.Equals(trainer.Id)).Email,
+                    Name = _applicationDbcontext.Users.First(x => x.Id.Equals(trainer.Id)).Name,
                     Skills = skills
                 };
                 trainers.Add(tr);
@@ -91,7 +91,7 @@ namespace TrainerCalenderAPI.Repository
             var tr = new TrainerModelDto()
             {
                 EmpId = trainer.Id,
-                Name = _applicationDbcontext.Users.First(x => x.Id.Equals(trainer.Id)).Email,
+                Name = _applicationDbcontext.Users.First(x => x.Id.Equals(trainer.Id)).Name,
                 Skills = skills
             };
             return tr;

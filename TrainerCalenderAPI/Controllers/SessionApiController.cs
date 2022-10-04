@@ -9,7 +9,7 @@ namespace TrainerCalenderAPI.Controllers
     {
         protected ResponseDto _responseDto;
 
-        //interface object
+        //interface Variable
         private ISessionRepository _sessionRepository;
 
         //Constructor 
@@ -27,10 +27,11 @@ namespace TrainerCalenderAPI.Controllers
         {
             try
             {
-                if (await _sessionRepository.CheckSessionTableIsEmptyOrNot())
-                {
-                    IEnumerable<SessionDto> sessionDtos = await _sessionRepository.GetAllSessionsDtos();
-                    _responseDto.Result = sessionDtos;
+                
+                IEnumerable<SessionDto> sessionDtos = await _sessionRepository.GetAllSessionsDtos();
+                _responseDto.Result = sessionDtos;
+                if (sessionDtos.Any()) 
+                { 
                     _responseDto.DisplayMessage = "successfully Get All Sessions...";
                 }
                 else
@@ -55,10 +56,11 @@ namespace TrainerCalenderAPI.Controllers
         {
             try
             {
-                if (await _sessionRepository.CheckSessionTableIsEmptyOrNot())
-                {
-                    IEnumerable<SessionDto> sessionDtos = await _sessionRepository.GetSessionsByDateRange(startDate, endDate);
-                    _responseDto.Result = sessionDtos;
+               
+                IEnumerable<SessionDto> sessionDtos = await _sessionRepository.GetSessionsByDateRange(startDate, endDate);
+                _responseDto.Result = sessionDtos;
+                if (sessionDtos.Any())
+                { 
                     _responseDto.DisplayMessage = "Successfully Get All Sessions...";
                 }
                 else
@@ -83,10 +85,11 @@ namespace TrainerCalenderAPI.Controllers
         {
             try
             {
-                if (await _sessionRepository.CheckSessionTableIsEmptyOrNot())
-                {
-                    IEnumerable<SessionDto> sessionDtos = await _sessionRepository.GetSessionsByTrainerDateRange(trainerId, startDate, endDate);
-                    _responseDto.Result = sessionDtos;
+                
+                IEnumerable<SessionDto> sessionDtos = await _sessionRepository.GetSessionsByTrainerDateRange(trainerId, startDate, endDate);
+                _responseDto.Result = sessionDtos;
+                if (sessionDtos.Any())
+                { 
                     _responseDto.DisplayMessage = "Successfully Get All Sessions...";
                 }
                 else
@@ -111,10 +114,11 @@ namespace TrainerCalenderAPI.Controllers
         {
             try
             {
-                if (await _sessionRepository.CheckSessionTableIsEmptyOrNot())
+                
+                IEnumerable<SessionDto> sessionDtos = await _sessionRepository.GetAllSessionsByTrainerForDate(trainerId, seletedDate);
+                _responseDto.Result = sessionDtos;
+                if (sessionDtos.Any())
                 {
-                    IEnumerable<SessionDto> sessionDtos = await _sessionRepository.GetAllSessionsByTrainerForDate(trainerId, seletedDate);
-                    _responseDto.Result = sessionDtos;
                     _responseDto.DisplayMessage = "Successfully Get All Sessions...";
                 }
                 else
@@ -135,21 +139,22 @@ namespace TrainerCalenderAPI.Controllers
         //Status:Done
         //method : Get All Sessions of a trainer
         [HttpGet]
-        [Route("GetSessionByTrainer/{id}")]
-        public async Task<object> Get(string trainerId)
+        [Route("GetSessionByTrainer/{trainerId}")]
+        public async Task<object> GetSessionByTrainer(string trainerId)
         {
             try
-            {
-                if (await _sessionRepository.CheckSessionTableIsEmptyOrNot())
-                {
-                    IEnumerable<SessionDto> sessionDtos = await _sessionRepository.GetSessionByTrainerId(trainerId);
-                    _responseDto.Result = sessionDtos;
+            {   
+                IEnumerable<SessionDto> sessionDtos = await _sessionRepository.GetSessionByTrainerId(trainerId);
+                _responseDto.Result = sessionDtos;
+                if (sessionDtos.Any())
+                {                   
                     _responseDto.DisplayMessage = "successfully Get Session By Trainer Id: " + trainerId;
                 }
                 else
                 {
-                    _responseDto.DisplayMessage = "Empty";
+                    _responseDto.DisplayMessage = "No Data Found";
                 }
+                
             }
             catch (Exception ex)
             {
@@ -163,15 +168,15 @@ namespace TrainerCalenderAPI.Controllers
         //Status:Done
         //method : Get All Session of a Course...
         [HttpGet]
-        [Route("GetSessionByCourse/{id}")]
+        [Route("GetSessionByCourse/{courseId}")]
         public async Task<object> GetSessionByCourse(int courseId)
         {
             try
-            {
-                if (await _sessionRepository.CheckSessionTableIsEmptyOrNot())
+            {   
+                IEnumerable<SessionDto> sessionDtos = await _sessionRepository.GetSessionByCourseId(courseId);
+                _responseDto.Result = sessionDtos;
+                if (sessionDtos.Any())
                 {
-                    IEnumerable<SessionDto> sessionDtos = await _sessionRepository.GetSessionByCourseId(courseId);
-                    _responseDto.Result = sessionDtos;
                     _responseDto.DisplayMessage = "successfully Get Session By courseId Id: " + courseId;
                 }
                 else
@@ -192,11 +197,11 @@ namespace TrainerCalenderAPI.Controllers
         //method :  Add a session...
         [HttpPost]
         [Route("CreateSession")]
-        public async Task<object> Post([FromBody] SessionDto sessionDto)
+        public async Task<object> Post([FromBody] SessionCreateDto sessionDto)
         {
             try
             {
-                SessionDto proDto = await _sessionRepository.CreateSession(sessionDto);
+                SessionCreateDto proDto = await _sessionRepository.CreateSession(sessionDto);
                 _responseDto.Result = proDto;
                 _responseDto.DisplayMessage = "successfully Created Session...";
             }
@@ -297,11 +302,11 @@ namespace TrainerCalenderAPI.Controllers
         //method : Update Session...
         [HttpPut]
         [Route("UpdateSession")]
-        public async Task<object> Put([FromBody] SessionDto sessionDto)
+        public async Task<object> Put([FromBody] SessionCreateDto sessionDto)
         {
             try
             {
-                SessionDto proDto = await _sessionRepository.CreateSession(sessionDto);
+                SessionCreateDto proDto = await _sessionRepository.CreateSession(sessionDto);
                 _responseDto.Result = proDto;
                 _responseDto.DisplayMessage = "successfully Updated Session";
             }

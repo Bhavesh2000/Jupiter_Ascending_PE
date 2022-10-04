@@ -22,8 +22,9 @@ namespace TrainerCalenderAPI.Repository.IRepository
         //6
         Task<IEnumerable<SessionDto>> GetSessionByCourseId(int courseId);
 
+        // One Methode For Create as well as Update Session
         //7,8
-        Task<SessionDto> CreateSession(SessionDto session);
+        Task<SessionCreateDto> CreateSession(SessionCreateDto session);
 
         //9
         Task<bool> DeleteSession(int sessionId);
@@ -36,9 +37,5 @@ namespace TrainerCalenderAPI.Repository.IRepository
 
         //11
         Task<bool> DeleteSessionByDateRange(DateTime startDate, DateTime endDate);
-
-
-
-        Task<bool> CheckSessionTableIsEmptyOrNot();
     }
 }
