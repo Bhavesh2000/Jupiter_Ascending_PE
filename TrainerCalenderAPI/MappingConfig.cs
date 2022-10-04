@@ -10,10 +10,10 @@ namespace TrainerCalenderAPI
         {
             var mappingConfig = new MapperConfiguration(config =>
             {
-                var mappingConfig = new MapperConfiguration(config => {
-                    config.CreateMap<SessionDto, Session>();
-                    config.CreateMap<Session, SessionDto>();
-                });
+                config.CreateMap<SessionDto, Session>();
+                config.CreateMap<Session, SessionDto>();
+                config.CreateMap<SessionCreateDto, Session>();
+                config.CreateMap<Session, SessionCreateDto>();
             });
             return mappingConfig;
         }

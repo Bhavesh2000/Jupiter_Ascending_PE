@@ -1,6 +1,6 @@
 ﻿namespace TrainerCalenderAPI.Models.Dto
 {
-    public class SessionDto
+    public class SessionCreateDto
     {
         public int Id { get; set; }
         public int CourseId { get; set; }
@@ -20,11 +20,5 @@
         public string TrainingMode { get; set; }
 
         public string TrainingLocation { get; set; }
-
-        public SkillModelDto Skill { get; set; }
-
-        public CourseDto Course { get; set; }
-
-        public TrainerModelDto Trainer { get; set; }
     }
 }
